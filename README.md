@@ -19,7 +19,7 @@ Simply copy all the files in the folder "Extensions" of Inkscape
 
 
 for unix (& mac maybe) change the permission on the file:
-
+>>pip3 install pypng
 >>chmod 755 for all the *.py files
 
 >>chmod 644 for all the *.inx files
@@ -43,3 +43,5 @@ for unix (& mac maybe) change the permission on the file:
 
 #Note
 I have created all the file except for png.py , see that file for details on the license
+
+

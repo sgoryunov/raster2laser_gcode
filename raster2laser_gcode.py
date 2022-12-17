@@ -49,7 +49,7 @@ class GcodeExport(inkex.Effect):
 		self.OptionParser.add_option("-d", "--directory",action="store", type="string", dest="directory", default="/home/",help="Directory for files") ####check_dir
 		self.OptionParser.add_option("-f", "--filename", action="store", type="string", dest="filename", default="-1.0", help="File name")            
 		self.OptionParser.add_option("","--add-numeric-suffix-to-filename", action="store", type="inkbool", dest="add_numeric_suffix_to_filename", default=True,help="Add numeric suffix to filename")            
-		self.OptionParser.add_option("","--bg_color",action="store",type="string",dest="bg_color",default="",help="")
+		self.OptionParser.add_option("","--bg_color",action="store",type="string",dest="bg_color",default="white",help="")
 		self.OptionParser.add_option("","--resolution",action="store", type="int", dest="resolution", default="5",help="") #Usare il valore su float(xy)/resolution e un case per i DPI dell export
 		
 		
@@ -90,7 +90,8 @@ class GcodeExport(inkex.Effect):
 	def effect(self):
 		
 
-		current_file = self.args[-1]
+		# current_file = self.args[-1]
+		current_file = self.options.input_file
 		bg_color = self.options.bg_color
 		
 		
@@ -99,7 +100,7 @@ class GcodeExport(inkex.Effect):
 		if (os.path.isdir(self.options.directory)) == True:					
 			
 			##CODICE SE ESISTE LA DIRECTORY
-			#inkex.errormsg("OK") #DEBUG
+			# inkex.errormsg("OK file is " + current_file) #DEBUG
 
 			
 			#Aggiungo un suffisso al nomefile per non sovrascrivere dei file
@@ -149,6 +150,7 @@ class GcodeExport(inkex.Effect):
 			pos_file_gcode = os.path.join(self.options.directory,self.options.filename+suffix+"gcode.txt") 
 			
 
+
 			#Esporto l'immagine in PNG
 			self.exportPage(pos_file_png_exported,current_file,bg_color)
 
@@ -183,8 +185,8 @@ class GcodeExport(inkex.Effect):
 		else:
 			DPI = 254
 
-		command="inkscape -C -e \"%s\" -b\"%s\" %s -d %s" % (pos_file_png_exported,bg_color,current_file,DPI) #Comando da linea di comando per esportare in PNG
-					
+		command="inkscape -C -o \"%s\" -b \"%s\" %s -d %s" % (pos_file_png_exported,bg_color,current_file,DPI) #Comando da linea di comando per esportare in PNG
+		inkex.errormsg("command is " + command) #DEBUG	
 		p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		return_code = p.wait()
 		f = p.stdout
