@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 '''
 # ----------------------------------------------------------------------------
 # Copyright (C) 2014 305engineering <305engineering@gmail.com>
@@ -32,7 +33,6 @@ sys.path.append('/Applications/Inkscape.app/Contents/Resources/extensions')
 
 import subprocess
 import math
-
 import inkex
 import png
 import array

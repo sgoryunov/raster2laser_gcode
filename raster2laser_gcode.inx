@@ -9,7 +9,6 @@
 	
 	<!-- Dipendenze, basta solo lo script python principale -->
 	<dependency type="executable" location="extensions">raster2laser_gcode.py</dependency>
-	<dependency type="executable" location="extensions">inkex.py</dependency>
 	    	
 	<!-- Parametri di input per lo script python che vengono visualizzati nel widget creato da inkscape-->
 	<!-- vengono generati in ordine di come vengono scritti  -->
